@@ -17,22 +17,28 @@ struct Home: View {
                     .ignoresSafeArea()
 
                 // foreground
-                ZStack {
-                    RoundedBackground()
-                        .overlay(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                Greetings()
 
-                                ChartView()
+                RoundedBackground()
 
-                                ScrollItems()
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Greetings()
 
-                                Spacer()
-                            }
-                        }
+                        ChartView()
+
+                        ScrollItems()
+
+                        AnalyticsButton()
+
+                        Spacer()
+                    }
                 }
 
-            }.toolbar {
+            }
+            .onAppear {
+                vm.updateGreetings()
+            }
+            .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("Dashboard")
                         .font(.title2)
@@ -43,10 +49,10 @@ struct Home: View {
                     NavBarButton()
                 }
             }
+            .toolbarBackground(Color.theme.accent, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .foregroundColor(.white)
-            .onAppear {
-                vm.updateGreetings()
-            }
+
         }
     }
 }
@@ -65,7 +71,7 @@ extension Home {
     private func RoundedBackground() -> some View {
         VStack {
             RoundedRectangle(cornerRadius: 20)
-                .padding(.top, 20)
+                // .padding(.top, 20)
                 .frame(maxHeight: .infinity)
                 .ignoresSafeArea(edges: .bottom)
                 .foregroundColor(Color.theme.bgWhite)
@@ -84,9 +90,9 @@ extension Home {
                 .foregroundColor(.black)
                 .fontWeight(.semibold)
                 .padding(.top, 3)
-
-        }.padding(.top, 40)
-            .padding()
+        }
+        .padding(.top, 20)
+        .padding()
     }
 
     private func ChartView() -> some View {
@@ -108,6 +114,29 @@ extension Home {
                         ScrollViewItem(item: items)
                     }
                 }
+            }
+        }
+    }
+
+    // MARK: Analytics Button
+
+    private func AnalyticsButton() -> some View {
+        VStack {
+            Button {
+            } label: {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 0.4)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .padding(.horizontal)
+                    .foregroundColor(.gray)
+                    .overlay {
+                        HStack {
+                            Image("upArrow")
+                            Text("View Analytics")
+                                .fontWeight(.semibold)
+                        }.foregroundColor(.black)
+                    }
             }
         }
     }
