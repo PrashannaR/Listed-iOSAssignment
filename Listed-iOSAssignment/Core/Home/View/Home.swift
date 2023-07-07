@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @StateObject private var vm = HomeViewModel()
+    
     var body: some View {
         NavigationStack {
             ZStack{
@@ -21,6 +24,11 @@ struct Home: View {
                         .frame(maxHeight: .infinity)
                         .ignoresSafeArea(edges: .bottom)
                         .foregroundColor(Color.theme.bgWhite)
+                        .overlay(alignment: .leading) {
+                            Greetings()
+                        }
+                    
+
 
                         
                     
@@ -39,6 +47,9 @@ struct Home: View {
                 }
             }
             .foregroundColor(.white)
+            .onAppear{
+                vm.updateGreetings()
+            }
         }
     }
 }
@@ -54,5 +65,22 @@ struct Home_Previews: PreviewProvider {
 
 //MARK: Extension
 extension Home{
+    
+    private func Greetings() -> some View{
+        VStack(alignment: .leading) {
+            Text(vm.greetingsMessage)
+                .foregroundColor(.gray)
+            
+            Text("Prashanna 👋")
+                .font(.title2)
+                .foregroundColor(.black)
+                .fontWeight(.semibold)
+                .padding(.top,3)
+                
+            
+            Spacer()
+        }.padding(.top,40)
+            .padding()
+    }
 
 }
