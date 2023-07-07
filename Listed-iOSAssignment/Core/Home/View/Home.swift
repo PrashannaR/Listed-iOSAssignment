@@ -35,6 +35,13 @@ struct Home: View {
                         }
                         
                         ViewAllLinksButton()
+                        
+                        CustomButtonTwo(borderColor: Color.theme.borderGreen, bgColor: Color.theme.bgGreen, image: "call", title: "Talk with us")
+                            .padding(.top, 32)
+                        
+                        CustomButtonTwo(borderColor: Color.theme.borderBlue, bgColor: Color.theme.bgBlue, image: "faq", title: "Frequently Asked Questions")
+                            .padding(.top)
+
 
                         Spacer()
                     }
@@ -208,6 +215,42 @@ extension Home {
                             Text("View all Links")
                                 .fontWeight(.semibold)
                         }.foregroundColor(.black)
+                    }
+            }
+        }
+    }
+    
+    private func CustomButtonTwo(borderColor: Color, bgColor: Color, image: String, title: String) -> some View{
+        VStack{
+            Button {
+                
+            } label: {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 2)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .padding(.horizontal)
+                    .foregroundColor(borderColor)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .padding(.horizontal)
+                            .foregroundColor(bgColor)
+                            .overlay{
+                                HStack{
+                                    Image(image)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30, height: 30)
+                                        .padding(.leading,8)
+                                    Text(title)
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    Spacer()
+                                }
+                                .padding()
+                            }
                     }
             }
         }
