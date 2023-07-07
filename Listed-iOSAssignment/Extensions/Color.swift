@@ -18,4 +18,5 @@ struct ColorTheme{
     let accent = Color("AccentColor")
     let bgWhite = Color("BackgroundWhite")
     let blueBtn = Color("ButtonBlue")
+    let lightBlue = Color("LightBlue")
 }
