@@ -124,9 +124,17 @@ extension Home {
         VStack {
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(vm.scrollItems) { items in
-                        ScrollViewItem(item: items)
-                    }
+                    let todayClick = vm.dash?.todayClicks
+                    
+                    
+                    ScrollViewItem(imageName: "click", title: String(todayClick ?? 123), desc: "Today's Click")
+                    
+                    ScrollViewItem(imageName: "location", title: vm.dash?.topLocation ?? "Ahemdabad", desc: "Top Location")
+                    
+                    ScrollViewItem(imageName: "globe", title: vm.dash?.topSource ?? "Instagram", desc: "Top source")
+                    
+                    ScrollViewItem(imageName: "time", title: vm.dash?.startTime ?? "11:00 - 12:00", desc: "Best Time")
+                    
                 }
             }
         }

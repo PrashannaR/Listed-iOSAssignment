@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ScrollViewItem: View {
-    let item: ScrollItem
+    
+    
+    let imageName:String
+    let title: String
+    let desc: String
+    
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 10)
@@ -16,17 +21,17 @@ struct ScrollViewItem: View {
                 .foregroundColor(.white)
                 .overlay(alignment: .leading, content: {
                     VStack(alignment: .leading) {
-                        Image(item.image)
+                        Image(imageName)
                             .padding(.top)
                         Spacer()
-                        Text(item.title)
+                        Text(title)
                             .font(.headline)
                             .lineLimit(1)
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
                             
                         Spacer()
-                        Text(item.body)
+                        Text(desc)
                             .font(.subheadline)
                             .foregroundColor(.gray)
 
@@ -42,7 +47,9 @@ struct ScrollViewItem: View {
 
 struct ScrollViewItem_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollViewItem(item: ScrollItem(id: 1, image: "click", title: "123", body: "Today's clicks"))
+        //ScrollViewItem(item: ScrollItem(id: 1, image: "click", title: "123", body: "Today's clicks"))
+        
+        ScrollViewItem(imageName: "click", title: "123", desc: "Today's clicks")
             
     }
 }

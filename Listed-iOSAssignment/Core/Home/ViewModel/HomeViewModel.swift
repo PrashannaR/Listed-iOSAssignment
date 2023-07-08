@@ -15,18 +15,11 @@ class HomeViewModel: ObservableObject{
     
     @Published var dash : Dashboard?
         
-    private let dataService = DashboardService()
-    private var cancellables = Set<AnyCancellable>()
-    
 
     
-    //scrollview item
-    @Published var scrollItems : [ScrollItem] = [
-        ScrollItem(id: 1, image: "click", title: "123", body: "Today's clicks"),
-        ScrollItem(id: 2, image: "location", title: "Ahemdabad", body: "Top Location"),
-        ScrollItem(id: 3, image: "globe", title: "Instagram", body: "Top source"),
-        ScrollItem(id: 4, image: "time", title: "11:00 - 12:00", body: "Best Time"),
-    ]
+    init(){
+        loadData(httpMethod: "GET")
+    }
     
     
     //MARK: Greetings Message
@@ -49,17 +42,36 @@ class HomeViewModel: ObservableObject{
         }
     }
     
-    
-//    //MARK: Subscriber
-//    func addSubscibers(){
-//        dataService.$dash
-//            .sink {[weak self] returnedData in
-//                self?.dash = returnedData
-//            }
-//            .store(in: &cancellables)
-//    }
 
-    
+    func loadData(httpMethod: String){
+        
+        guard let url = URL(string: "https://api.inopenapp.com/api/v1/dashboardNew") else {return}
+        
+        var request = URLRequest(url: url,timeoutInterval: Double.infinity)
+        request.addValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU5MjcsImlhdCI6MTY3NDU1MDQ1MH0.dCkW0ox8tbjJA2GgUx2UEwNlbTZ7Rr38PVFJevYcXFI", forHTTPHeaderField: "Authorization")
+        request.addValue("connect.sid=s%3AoxxIR5U2-ZudEhB7IKRj_a3dzqhpjPvG.ll%2FR9ONq39aDWFUP7DAXIeOfoGPb6KtaemuMuv9%2Fg6U", forHTTPHeaderField: "Cookie")
+
+        request.httpMethod = httpMethod
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                print(String(describing: error))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let dashboard = try decoder.decode(Dashboard.self, from: data)
+                DispatchQueue.main.async {
+                    self.dash = dashboard
+                    
+                    print(self.dash?.topLocation ?? "aayena tero data")
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
+        task.resume()
+    }
     
 
             
