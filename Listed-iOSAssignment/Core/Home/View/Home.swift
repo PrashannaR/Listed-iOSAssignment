@@ -220,6 +220,7 @@ extension Home {
         }
     }
     
+    //MARK: Custom Buttons
     private func CustomButtonTwo(borderColor: Color, bgColor: Color, image: String, title: String) -> some View{
         VStack{
             Button {
