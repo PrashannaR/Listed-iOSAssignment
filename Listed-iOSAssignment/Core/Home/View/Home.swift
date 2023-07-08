@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Home: View {
-    @StateObject private var vm = HomeViewModel()
+    
+    @EnvironmentObject private var vm : HomeViewModel
 
     var body: some View {
         NavigationStack {
@@ -49,6 +50,7 @@ struct Home: View {
             }
             .onAppear {
                 vm.updateGreetings()
+                //vm.loadData(httpMethod: "GET")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -68,10 +70,12 @@ struct Home: View {
     }
 }
 
+//MARK: Preview
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             Home()
+                .environmentObject(dev.vm)
         }
     }
 }

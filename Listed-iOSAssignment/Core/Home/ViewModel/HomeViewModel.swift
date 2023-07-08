@@ -7,10 +7,18 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class HomeViewModel: ObservableObject{
     
     @Published var greetingsMessage : String = ""
+    
+    @Published var dash : Dashboard?
+        
+    private let dataService = DashboardService()
+    private var cancellables = Set<AnyCancellable>()
+    
+
     
     //scrollview item
     @Published var scrollItems : [ScrollItem] = [
@@ -20,6 +28,8 @@ class HomeViewModel: ObservableObject{
         ScrollItem(id: 4, image: "time", title: "11:00 - 12:00", body: "Best Time"),
     ]
     
+    
+    //MARK: Greetings Message
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH"
@@ -40,6 +50,18 @@ class HomeViewModel: ObservableObject{
     }
     
     
+//    //MARK: Subscriber
+//    func addSubscibers(){
+//        dataService.$dash
+//            .sink {[weak self] returnedData in
+//                self?.dash = returnedData
+//            }
+//            .store(in: &cancellables)
+//    }
+
     
+    
+
+            
     
 }

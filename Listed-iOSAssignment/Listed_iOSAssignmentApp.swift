@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Listed_iOSAssignmentApp: App {
+    
+    @StateObject private var vm = HomeViewModel()
+    
     var body: some Scene {
         WindowGroup {
             Home()
+                .environmentObject(vm)
         }
     }
 }
