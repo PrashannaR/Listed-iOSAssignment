@@ -124,13 +124,38 @@ extension Home {
                         HStack{
                             Text("Overview")
                                 .foregroundColor(.gray)
+                                .font(.callout)
                                 .padding()
+                            
+                            Spacer()
+                            
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 0.5)
+                                .frame(width: 130, height: 30)
+                                .padding(.trailing)
+                                .overlay{
+                                    HStack{
+                                        Text("07 June - 07 July")
+                                        
+                                        Image(systemName: "clock")
+                                            .padding(.trailing)
+                                        
+                                        
+                                    }
+                                    .font(.caption2)
+                                    
+                                    .foregroundColor(.black)
+                                }
                             
                             
                         }
                         .padding()
+                        .padding(.bottom,4)
+                        
                         ChartView(dash: vm.dash ?? DeveloperPreview.instance.dashboard)
                             .padding()
+                            .frame(width: 300, height: 75)
+                            .offset(x:30,y:30)
                         
                         Spacer()
                     }
