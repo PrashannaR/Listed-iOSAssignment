@@ -31,9 +31,12 @@ struct Home: View {
 
                         LinksTab()
                         
-                        ForEach(0..<5) { _ in
-                            LinkView()
+                        ForEach(vm.dash?.data?.topLinks ?? DeveloperPreview.instance.links){link in
+                            LinkView(link: link)
+                            
                         }
+                        
+                        
                         
                         ViewAllLinksButton()
                         
@@ -50,7 +53,6 @@ struct Home: View {
             }
             .onAppear {
                 vm.updateGreetings()
-                //vm.loadData(httpMethod: "GET")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

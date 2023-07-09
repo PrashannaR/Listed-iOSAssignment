@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LinkView: View {
+    
+    let link : Link
+    
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 20)
@@ -23,18 +26,19 @@ struct LinkView: View {
                                 .foregroundColor(Color.theme.accent)
 
                             VStack(alignment: .leading) {
-                                Text("Sample link name...")
+                                Text(link.title ?? "Sample link name...")
                                     .foregroundColor(.black)
                                     .font(.subheadline)
+                                    .lineLimit(1)
                                 Text("22 Aug 2022")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
 
                             Spacer()
-
+                            let totalClicks = link.totalClicks
                             VStack(alignment: .leading) {
-                                Text("2323")
+                                Text(String(totalClicks ?? 0))
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                 Text("Clicks")
@@ -49,7 +53,7 @@ struct LinkView: View {
                             .resizable()
                             .overlay {
                                 HStack{
-                                    Text("https://samplelink.oia.bio/ashd")
+                                    Text(link.smartLink ?? "")
                                         .font(.subheadline)
                                         .foregroundColor(Color.theme.accent)
                                     Spacer()
@@ -70,7 +74,7 @@ struct LinkView: View {
 
 struct LinkView_Previews: PreviewProvider {
     static var previews: some View {
-        LinkView()
+        LinkView(link: dev.link)
     }
 }
 

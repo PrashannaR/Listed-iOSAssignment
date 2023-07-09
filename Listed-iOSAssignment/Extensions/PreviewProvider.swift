@@ -20,6 +20,12 @@ class DeveloperPreview {
     
     let vm = HomeViewModel()
     
+    let link = Link(id: 146150, webLink: "https://inopenapp.com/4o5qk", smartLink: "inopenapp.com/4o5qk", title: "651   Flats for Rent in Kormangla Bangalore, Bangalore Karnataka Without Brokerage - NoBroker Rental Properties in Kormangla Bangalore Karnataka Without Brokerage", totalClicks: 94, originalImage: "https://assets.nobroker.in/nb-new/public/List-Page/ogImage.png", timesAgo: "3 month ago", createdAt: "2023-03-15T07:33:50.000Z", urlPrefix: "", urlSuffix: "4o5qk", app: "nobroker")
+    
+    let links : [Link] = [
+        Link(id: 146150, webLink: "https://inopenapp.com/4o5qk", smartLink: "inopenapp.com/4o5qk", title: "651   Flats for Rent in Kormangla Bangalore, Bangalore Karnataka Without Brokerage - NoBroker Rental Properties in Kormangla Bangalore Karnataka Without Brokerage", totalClicks: 94, originalImage: "https://assets.nobroker.in/nb-new/public/List-Page/ogImage.png", timesAgo: "3 month ago", createdAt: "2023-03-15T07:33:50.000Z", urlPrefix: "", urlSuffix: "4o5qk", app: "nobroker")
+    ]
+    
     let dashboard = Dashboard(status: true, statusCode: 200, message: "success", supportWhatsappNumber: "8297368106", extraIncome: 59.9, totalLinks: 178, totalClicks: 1141, todayClicks: 1, topSource: "Direct", topLocation: "Surat", startTime: "17:00", linksCreatedToday: 0, appliedCampaign: 0, data: DataClass(
         recentLinks: [
             Link(id: 146150, webLink: "https://inopenapp.com/4o5qk", smartLink: "inopenapp.com/4o5qk", title: "651   Flats for Rent in Kormangla Bangalore, Bangalore Karnataka Without Brokerage - NoBroker Rental Properties in Kormangla Bangalore Karnataka Without Brokerage", totalClicks: 94, originalImage: "https://assets.nobroker.in/nb-new/public/List-Page/ogImage.png", timesAgo: "3 month ago", createdAt: "2023-03-15T07:33:50.000Z", urlPrefix: "", urlSuffix: "4o5qk", app: "nobroker"),

@@ -222,6 +222,7 @@ import Foundation
 
  */
 
+
 struct Dashboard: Codable {
     let status: Bool?
     let statusCode: Int?
@@ -254,16 +255,16 @@ struct DataClass: Codable {
     let recentLinks, topLinks: [Link]?
     let overallurlChart: [String: Int]?
 
-    enum CodignKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case recentLinks = "recent_links"
         case topLinks = "top_links"
         case overallurlChart = "overall_url_chart"
     }
 }
 
-// MARK: - Link
+// MARK: - Linlk
 
-struct Link: Identifiable, Codable {
+struct Link:Identifiable, Codable {
     let id: Int?
     let webLink: String?
     let smartLink, title: String?

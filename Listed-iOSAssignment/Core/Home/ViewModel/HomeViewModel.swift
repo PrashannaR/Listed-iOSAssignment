@@ -14,6 +14,7 @@ class HomeViewModel: ObservableObject{
     @Published var greetingsMessage : String = ""
     
     @Published var dash : Dashboard?
+    @Published var dataClass : DataClass?
         
 
     
@@ -42,11 +43,11 @@ class HomeViewModel: ObservableObject{
         }
     }
     
-
+    
     func loadData(httpMethod: String){
-        
+
         guard let url = URL(string: "https://api.inopenapp.com/api/v1/dashboardNew") else {return}
-        
+
         var request = URLRequest(url: url,timeoutInterval: Double.infinity)
         request.addValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU5MjcsImlhdCI6MTY3NDU1MDQ1MH0.dCkW0ox8tbjJA2GgUx2UEwNlbTZ7Rr38PVFJevYcXFI", forHTTPHeaderField: "Authorization")
         request.addValue("connect.sid=s%3AoxxIR5U2-ZudEhB7IKRj_a3dzqhpjPvG.ll%2FR9ONq39aDWFUP7DAXIeOfoGPb6KtaemuMuv9%2Fg6U", forHTTPHeaderField: "Cookie")
@@ -57,23 +58,31 @@ class HomeViewModel: ObservableObject{
                 print(String(describing: error))
                 return
             }
+            print(String(data: data, encoding: .utf8)!)
             do {
                 let decoder = JSONDecoder()
                 let dashboard = try decoder.decode(Dashboard.self, from: data)
                 DispatchQueue.main.async {
                     self.dash = dashboard
-                    
-                    print(self.dash?.topLocation ?? "aayena tero data")
+
+                    print(self.dash ?? "aayena tero data")
+
                 }
+                
             } catch {
                 print(error)
             }
         }
-        
+
         task.resume()
     }
     
 
-            
-    
 }
+
+
+ 
+ 
+
+
+
