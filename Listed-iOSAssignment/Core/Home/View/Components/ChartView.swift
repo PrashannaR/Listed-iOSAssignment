@@ -77,10 +77,27 @@ struct ChartView: View {
     var body: some View {
         VStack {
             chartView
-                .frame(height: 200)
+                .frame(height: 100)
+                .background{
+                    chartBackground
+                }
         }
     }
+    
 
+
+    
+}
+
+
+struct ChartView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChartView(dash: dev.dashboard)
+    }
+}
+
+
+extension ChartView{
     private var chartView: some View {
         GeometryReader { geometry in
             Path { path in
@@ -105,11 +122,43 @@ struct ChartView: View {
             .shadow(color: Color.theme.accent.opacity(0.1), radius: 10, x: 0, y: 40)
         }
     }
-}
-
-
-struct ChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartView(dash: dev.dashboard)
+    
+    
+    private var chartBackground: some View {
+        VStack {
+            Divider()
+            Spacer()
+            Divider()
+            Spacer()
+            Divider()
+        }.overlay{
+            HStack{
+                Divider()
+                    .frame(height: 200)
+                
+                Spacer()
+                
+                Divider()
+                    .frame(height: 200)
+                
+                Spacer()
+                
+                Divider()
+                    .frame(height: 200)
+                
+                Spacer()
+                
+                Divider()
+                    .frame(height: 200)
+                
+                Spacer()
+                
+                Divider()
+                    .frame(height: 200)
+                
+                Spacer()
+            }
+        }
     }
+    
 }

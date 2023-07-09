@@ -23,7 +23,7 @@ struct Home: View {
                     VStack(alignment: .leading) {
                         Greetings()
 
-                        ChartView()
+                        Chart()
 
                         ScrollItems()
 
@@ -110,13 +110,33 @@ extension Home {
         .padding(.top, 20)
         .padding()
     }
-
-    private func ChartView() -> some View {
+    
+    
+    //MARK: Chart
+    private func Chart() -> some View {
         VStack {
             RoundedRectangle(cornerRadius: 10)
                 .frame(maxWidth: .infinity)
-                .frame(height: 200)
+                .frame(height: 250)
                 .padding()
+                .overlay {
+                    VStack(alignment: .leading){
+                        HStack{
+                            Text("Overview")
+                                .foregroundColor(.gray)
+                                .padding()
+                            
+                            
+                        }
+                        .padding()
+                        ChartView(dash: vm.dash ?? DeveloperPreview.instance.dashboard)
+                            .padding()
+                        
+                        Spacer()
+                    }
+                }
+            
+            
         }
     }
 
