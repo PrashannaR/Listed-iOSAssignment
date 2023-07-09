@@ -23,9 +23,17 @@ struct LinkView: View {
                 .overlay(alignment: .leading) {
                     VStack(alignment: .leading) {
                         HStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(Color.theme.accent)
+//                            RoundedRectangle(cornerRadius: 20)
+//
+//                                .foregroundColor(Color.theme.accent)
+                            AsyncImage(url: URL(string: link.originalImage ?? "https://i.ytimg.com/vi/G0WTFfZqjz0/maxresdefault.jpg")) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 50, height: 50)
 
                             VStack(alignment: .leading) {
                                 Text(link.title ?? "Sample link name...")
