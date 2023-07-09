@@ -52,6 +52,7 @@ struct LinkView: View {
                                 Text(String(totalClicks ?? 0))
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
+                                    .foregroundColor(.black)
                                 Text("Clicks")
                                     .font(.caption)
                                     .foregroundColor(.gray)
