@@ -19,37 +19,7 @@ struct Home: View {
                 RoundedBackground()
 
                 // foreground
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        Greetings()
-
-                        Chart()
-
-                        ScrollItems()
-
-                        AnalyticsButton()
-
-                        LinksTab()
-                        
-                        ForEach(vm.dash?.data?.topLinks ?? DeveloperPreview.instance.links){link in
-                            LinkView(link: link)
-                            
-                        }
-                        
-                        
-                        
-                        ViewAllLinksButton()
-                        
-                        CustomButtonTwo(borderColor: Color.theme.borderGreen, bgColor: Color.theme.bgGreen, image: "call", title: "Talk with us")
-                            .padding(.top, 32)
-                        
-                        CustomButtonTwo(borderColor: Color.theme.borderBlue, bgColor: Color.theme.bgBlue, image: "faq", title: "Frequently Asked Questions")
-                            .padding(.top)
-
-
-                        Spacer()
-                    }
-                }
+                mainView()
             }
             .onAppear {
                 vm.updateGreetings()
@@ -335,6 +305,42 @@ extension Home {
                                     .bold()
                             }.foregroundColor(.white)
                     }
+            }
+        }
+    }
+    
+    private func mainView() -> some View{
+        VStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Greetings()
+
+                    Chart()
+
+                    ScrollItems()
+
+                    AnalyticsButton()
+
+                    LinksTab()
+                    
+                    ForEach(vm.dash?.data?.topLinks ?? DeveloperPreview.instance.links){link in
+                        LinkView(link: link)
+                        
+                    }
+                    
+                    
+                    
+                    ViewAllLinksButton()
+                    
+                    CustomButtonTwo(borderColor: Color.theme.borderGreen, bgColor: Color.theme.bgGreen, image: "call", title: "Talk with us")
+                        .padding(.top, 32)
+                    
+                    CustomButtonTwo(borderColor: Color.theme.borderBlue, bgColor: Color.theme.bgBlue, image: "faq", title: "Frequently Asked Questions")
+                        .padding(.top)
+
+
+                    Spacer()
+                }
             }
         }
     }
