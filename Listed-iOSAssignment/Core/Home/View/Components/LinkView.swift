@@ -11,6 +11,8 @@ struct LinkView: View {
     
     let link : Link
     
+   
+
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 20)
@@ -30,7 +32,8 @@ struct LinkView: View {
                                     .foregroundColor(.black)
                                     .font(.subheadline)
                                     .lineLimit(1)
-                                Text("22 Aug 2022")
+                                
+                                Text(formatDate(_:link.createdAt ?? "2021-12-17T10:36:05.000Z"))
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
@@ -69,6 +72,16 @@ struct LinkView: View {
                     .padding()
                 }
         }
+    }
+    
+    func formatDate(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = dateFormatter.date(from: dateString)
+
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "dd MMM yyyy"
+        return outputDateFormatter.string(from: date!)
     }
 }
 
